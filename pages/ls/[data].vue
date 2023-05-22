@@ -2,7 +2,7 @@
 const route = useRoute();
 const routeData: string = route.params.data as string;
 
-const decodedData = ref(Buffer.from(routeData, "base64").toString());
+const decodedData = ref(atob(routeData));
 </script>
 
 <template>
