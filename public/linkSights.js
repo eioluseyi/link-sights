@@ -30,6 +30,6 @@ document.querySelectorAll("a").forEach(
   (el) =>
     (el.onclick = (evt) => {
       evt.preventDefault();
-      window.location = newLink(el.href);
+      window.location = newLink({ href: el.href });
     })
 );
