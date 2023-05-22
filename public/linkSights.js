@@ -26,4 +26,10 @@ const newLink = ({ href }) => {
   return responseLink;
 };
 
-document.querySelectorAll("a").forEach((el) => (el.href = newLink(el.href)));
+document.querySelectorAll("a").forEach(
+  (el) =>
+    (el.onclick = (evt) => {
+      evt.preventDefault();
+      window.location = newLink(el.href);
+    })
+);
