@@ -20,7 +20,7 @@ const newLink = ({ href }) => {
   };
 
   const responseString = JSON.stringify(responseObject);
-  const responseBase64 = Buffer.from(responseString, "base64");
+  const responseBase64 = Buffer.from(responseString).toString("base64");
   const responseLink = `https://link-sights.vercel.app/ls/${responseBase64}`;
 };
 
