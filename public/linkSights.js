@@ -22,6 +22,8 @@ const newLink = ({ href }) => {
   const responseString = JSON.stringify(responseObject);
   const responseBase64 = btoa(responseString);
   const responseLink = `https://link-sights.vercel.app/ls/${responseBase64}`;
+
+  return responseLink;
 };
 
 document.querySelectorAll("a").forEach((el) => (el.href = newLink(el.href)));
