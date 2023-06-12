@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "^4.29.11",
+    "bufferutil": "^4.0.7",
     "socket.io": "^4.6.1",
     "socket.io-client": "^4.6.1",
     "utf-8-validate": "^6.0.3",
