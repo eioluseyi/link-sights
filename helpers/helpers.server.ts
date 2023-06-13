@@ -17,7 +17,7 @@ export const updateStats = async (statsData: LinkListType) => {
    * - If link doesn't exist, add new link with new attempt
    */
 
-  console.log("⏳ Updating insights..");
+  // console.log("⏳ Updating insights..");
 
   const linkIndex = findExistingLinkByIndex(statsData.href);
 
@@ -29,5 +29,5 @@ export const updateStats = async (statsData: LinkListType) => {
     linkList.push(statsData);
   }
 
-  console.log("💫 Insights updated!");
+  // console.log("💫 Insights updated!");
 };

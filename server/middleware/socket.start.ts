@@ -14,15 +14,15 @@ export default defineEventHandler(() => {
     // Set server to wsInstance object
     wsInstance.value = server;
 
-    console.log(
-      `📡 Server started on http://localhost:${wsInstance.value.options.port}${wsInstance.value.options.path}`
-    );
+    // console.log(
+    //   `📡 Server started on http://localhost:${wsInstance.value.options.port}${wsInstance.value.options.path}`
+    // );
 
     server.on(
       "connection",
       function (socket: { on: (arg0: string, arg1: any) => void }, req) {
         // When a new connection is made
-        console.log("🤝 New client connection", req.socket.remoteAddress);
+        // console.log("🤝 New client connection", req.socket.remoteAddress);
         sockets.push(socket);
 
         socket.on("message", async function (msg: string) {
@@ -55,14 +55,14 @@ export default defineEventHandler(() => {
           sockets.length = 0;
           newSocketList.forEach(sockets.push);
 
-          console.log("Sockets: ", sockets);
+          // console.log("Sockets: ", sockets);
         });
       }
     );
   } else {
-    console.log(
-      `👀 Socket server already running on http://localhost:${wsInstance.value.options.port}${wsInstance.value.options.path}`
-    );
+    // console.log(
+    //   `👀 Socket server already running on http://localhost:${wsInstance.value.options.port}${wsInstance.value.options.path}`
+    // );
   }
 });
 
