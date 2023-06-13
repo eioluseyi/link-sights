@@ -43,6 +43,19 @@ socket.addEventListener("open", () => {
   console.log("We are connected", isReady.all());
 });
 
+const observer = new IntersectionObserver(
+  function (entries) {
+    console.log(entries);
+    if (entries[0].isIntersecting === true)
+      console.log("Element is fully visible in screen");
+    if (entries[0].isIntersecting === false)
+      console.log("Element has gone from screen");
+  },
+  { threshold: [1] }
+);
+
+observer.observe(document.querySelector("img.attachment-full"));
+
 const activateLinks = () => {
   document.querySelectorAll("a").forEach((el) => {
     const elClone = el.cloneNode(true);

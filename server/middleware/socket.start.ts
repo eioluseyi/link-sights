@@ -20,9 +20,9 @@ export default defineEventHandler(() => {
 
     server.on(
       "connection",
-      function (socket: { on: (arg0: string, arg1: any) => void }) {
+      function (socket: { on: (arg0: string, arg1: any) => void }, req) {
         // When a new connection is made
-        console.log("🤝 New client connection");
+        console.log("🤝 New client connection", req.socket.remoteAddress);
         sockets.push(socket);
 
         socket.on("message", async function (msg: string) {
@@ -68,25 +68,27 @@ export default defineEventHandler(() => {
 
 /** BASIC ------------------------>
  *
- * - ✅ Client connect over socket
- * - ✅ Client on click, send attempt to link (with owner id) to backend via socket
- * - ✅ Backend process data, counting clicks per link
- * - ✅ Backend save data in variable (DB)
- * - ✅ Backend broadcast updates over socket and make data available through GET request
+ * - ✅ Client: connect over socket
+ * - ✅ Client: on click, send attempt to link (with owner id) to backend via socket
+ * - ✅ Backend: process data, counting clicks per link
+ * - ✅ Backend: save data in variable (DB)
+ * - ✅ Backend: broadcast updates over socket and make data available through GET request
  * - ⬜️ Write tests
  */
 
 /** INTERMEDIATE ------------------------>
  *
- * - ✅ Admin view link updates over socket or GET request
- * - ⬜️ Admin plot graph and run analytics on front end
+ * - ✅ Admin: view link updates over socket or GET request
+ * - ⬜️ Admin: plot graph and run analytics on front end
+ * - ⬜️ Backend: store data in database
  */
 
 /** ADVANCED ------------------------>
  *
- * - ⬜️ Add IP tracking
+ * - ⬜️ Add IP address tracking
  * - ⬜️ Add location tracking
  * - ⬜️ Add device type tracking
  * - ⬜️ Add time (+timezone) tracking
+ * - ⬜️ Add click through rate tracking
  * - ⬜️ Add other info tracking
  */

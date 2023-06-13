@@ -1,4 +1,4 @@
-const removeLeadingHash = (str: string) => {
+export const removeLeadingHash = (str: string) => {
   let cleanQueryString = str;
   if (str.startsWith("#")) {
     cleanQueryString = str.substring(1);
@@ -7,7 +7,7 @@ const removeLeadingHash = (str: string) => {
   return cleanQueryString;
 };
 
-const removeLeadingQuestionMark = (str: string) => {
+export const removeLeadingQuestionMark = (str: string) => {
   let cleanQueryString = str;
   if (str.startsWith("?")) {
     cleanQueryString = str.substring(1);
@@ -16,13 +16,16 @@ const removeLeadingQuestionMark = (str: string) => {
   return cleanQueryString;
 };
 
-const removeTrailingSlash = (str: string) => {
+export const removeTrailingSlash = (str: string) => {
   return str.endsWith("/") ? str.slice(0, -1) : str;
 };
 
 export const isUrlEqual = (first: string | URL, second: string | URL) => {
   const firstUrlObj = new URL(first);
   const secondUrlObj = new URL(second);
+
+  // Compare the strings literally
+  if (first === second) return true;
 
   // Compare the components
   const firstHostname = firstUrlObj.hostname;
