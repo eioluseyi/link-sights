@@ -31,7 +31,7 @@ const parseData = ({ href }) => {
   return responseObject;
 };
 
-const socket = new WebSocket("ws://localhost:3300/socket");
+const socket = new WebSocket("ws://linksights.netlify.app:3300/socket");
 
 socket.onerror = (err) =>
   console.log(`The was an error: ${JSON.stringify(err)}`);
@@ -43,18 +43,18 @@ socket.addEventListener("open", () => {
   console.log("We are connected", isReady.all());
 });
 
-const observer = new IntersectionObserver(
-  function (entries) {
-    console.log(entries);
-    if (entries[0].isIntersecting === true)
-      console.log("Element is fully visible in screen");
-    if (entries[0].isIntersecting === false)
-      console.log("Element has gone from screen");
-  },
-  { threshold: [1] }
-);
+// const observer = new IntersectionObserver(
+//   function (entries) {
+//     console.log(entries);
+//     if (entries[0].isIntersecting === true)
+//       console.log("Element is fully visible in screen");
+//     if (entries[0].isIntersecting === false)
+//       console.log("Element has gone from screen");
+//   },
+//   { threshold: [1] }
+// );
 
-observer.observe(document.querySelector("img.attachment-full"));
+// observer.observe(document.querySelector("img.attachment-full"));
 
 const activateLinks = () => {
   document.querySelectorAll("a").forEach((el) => {

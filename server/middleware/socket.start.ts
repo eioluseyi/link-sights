@@ -4,6 +4,8 @@ import { LinkListType } from "~~/types/types.server";
 import { linkList, sockets, wsInstance } from "~~/variables/variables.server";
 
 export default defineEventHandler(() => {
+  console.log("Running Middleware");
+
   if (!wsInstance.value) {
     // Sart the server
     const server = new WebSocketServer({
