@@ -31,7 +31,7 @@ const parseData = ({ href }) => {
   return responseObject;
 };
 
-const socket = new WebSocket("ws://linksights.netlify.app:3300/socket");
+const socket = new WebSocket("wss://linksights.netlify.app:3300/socket");
 
 socket.onerror = (err) =>
   console.log(`The was an error: ${JSON.stringify(err)}`);
