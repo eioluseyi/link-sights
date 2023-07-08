@@ -1,5 +1,1 @@
-export default {
-  nitro: {
-    preset: "netlify-edge",
-  },
-};
+export default {};
