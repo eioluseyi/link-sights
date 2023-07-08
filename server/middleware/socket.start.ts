@@ -62,9 +62,10 @@ export default defineEventHandler(() => {
       }
     );
   } else {
-    // console.log(
-    //   `👀 Socket server already running on http://localhost:${wsInstance.value.options.port}${wsInstance.value.options.path}`
-    // );
+    console.log(
+      `👀 Socket server already running on :${wsInstance.value.options.port}${wsInstance.value.options.path}`,
+      `With properties: ${JSON.stringify(wsInstance.value.options)}`
+    );
   }
 });
 
