@@ -31,17 +31,17 @@ const parseData = ({ href }) => {
   return responseObject;
 };
 
-const socket = new WebSocket("wss://linksights.netlify.app:3300/socket");
+// const socket = new WebSocket("wss://linksights.netlify.app:3300/socket");
 
-socket.onerror = (err) =>
-  console.log(`The was an error: ${JSON.stringify(err)}`);
+// socket.onerror = (err) =>
+//   console.log(`The was an error: ${JSON.stringify(err)}`);
 
-socket.onopen = (evt) => console.log("Log connection to server***", evt);
+// socket.onopen = (evt) => console.log("Log connection to server***", evt);
 
-socket.addEventListener("open", () => {
-  isReady.socket = true;
-  console.log("We are connected", isReady.all());
-});
+// socket.addEventListener("open", () => {
+//   isReady.socket = true;
+//   console.log("We are connected", isReady.all());
+// });
 
 // const observer = new IntersectionObserver(
 //   function (entries) {
@@ -56,15 +56,22 @@ socket.addEventListener("open", () => {
 
 // observer.observe(document.querySelector("img.attachment-full"));
 
+const sendRequest = ({ payload }) => {
+  return fetch("https://linksights.netlify.app/ls/", {
+    ...payload,
+  });
+};
+
 const activateLinks = () => {
   document.querySelectorAll("a").forEach((el) => {
     const elClone = el.cloneNode(true);
 
-    el.onclick = (evt) => {
+    el.onclick = async (evt) => {
       evt.preventDefault();
-      socket.send(
-        JSON.stringify({ type: "sight", data: parseData({ href: el.href }) })
-      );
+
+      const res = await sendRequest({
+        payload: { type: "sight", data: parseData({ href: el.href }) },
+      });
 
       elClone.click();
     };
