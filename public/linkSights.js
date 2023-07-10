@@ -57,7 +57,7 @@ const parseData = ({ href }) => {
 // observer.observe(document.querySelector("img.attachment-full"));
 
 const sendRequest = ({ payload }) => {
-  return fetch("https://linksights.netlify.app/ls/", {
+  return fetch("https://linksights.netlify.app/api/ls", {
     ...payload,
   });
 };
