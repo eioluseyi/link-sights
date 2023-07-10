@@ -1,10 +1,9 @@
 import { updateStats } from "~~/helpers/helpers.server";
 import { LinkListType } from "~~/types/types.server";
 import { linkList } from "~~/variables/variables.server";
+import geoip from "geoip-lite";
 
 export default defineEventHandler(async (event) => {
-  const geoip = require("geoip-lite");
-
   // This is where we retrieve the link data object
   const payload = await readBody(event);
 
@@ -13,7 +12,7 @@ export default defineEventHandler(async (event) => {
       ? Object.assign({}, event.node.req.headers)
       : {};
   const ip_address = headers["x-forwarded-for"]?.toString();
-  const geolocation_data = geoip.lookup(ip_address);
+  const geolocation_data = geoip.lookup(ip_address ?? "");
 
   console.log(geolocation_data);
 
