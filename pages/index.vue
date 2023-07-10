@@ -29,6 +29,7 @@ onMounted(() => {});
 </script>
 
 <template>
+  <h1><a href="https://google.com">Run!</a></h1>
   <span v-if="isLoading">Loading...</span>
   <span v-else-if="isError">Error: {{ error.message }}</span>
   <!-- We can assume by this point that `isSuccess === true` -->
