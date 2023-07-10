@@ -1,7 +1,7 @@
 import { updateStats } from "~~/helpers/helpers.server";
 import { LinkListType } from "~~/types/types.server";
 import { linkList } from "~~/variables/variables.server";
-import geoip from "geoip-lite";
+// import geoip from "geoip-lite";
 
 export default defineEventHandler(async (event) => {
   // This is where we retrieve the link data object
@@ -12,9 +12,9 @@ export default defineEventHandler(async (event) => {
       ? Object.assign({}, event.node.req.headers)
       : {};
   const ip_address = headers["x-forwarded-for"]?.toString();
-  const geolocation_data = geoip.lookup(ip_address ?? "");
+  //   const geolocation_data = geoip.lookup(ip_address ?? "");
 
-  console.log(geolocation_data);
+  //   console.log(geolocation_data);
 
   // Confirm it's a "sight" type
   if ((payload.type as string) === "sight") {
@@ -25,7 +25,7 @@ export default defineEventHandler(async (event) => {
         {
           ip_address: ip_address,
           device_type: "device_type",
-          ...geolocation_data,
+          //   ...geolocation_data,
         },
       ],
     };
@@ -34,5 +34,5 @@ export default defineEventHandler(async (event) => {
     await updateStats(processedData);
   }
 
-  return linkList;
+  return { linkList };
 });
