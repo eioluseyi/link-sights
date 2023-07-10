@@ -58,7 +58,12 @@ const parseData = ({ href }) => {
 
 const sendRequest = ({ payload }) => {
   return fetch("https://linksights.netlify.app/api/ls", {
-    ...payload,
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
   });
 };
 

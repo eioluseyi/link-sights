@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { LinkListType } from "~~/types/types.server";
 import {
   useQueryClient,
   useQuery,
@@ -25,8 +24,6 @@ const {
     return response.json();
   },
 });
-
-// const linkList = ref<LinkListType[]>([]);
 
 onMounted(() => {});
 </script>
