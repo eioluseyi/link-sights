@@ -3,7 +3,15 @@ import { LinkListType } from "~~/types/types.server";
 import { linkList } from "~~/variables/variables.server";
 // import geoip from "geoip-lite";
 
+const corsHeaders = {
+  "Access-Control-Allow-Headers": "*",
+  "Access-Control-Allow-Methods": "POST",
+  "Access-Control-Allow-Origin": "*",
+};
+
 export default defineEventHandler(async (event) => {
+  if (event.node.req.method === "OPTIONS")
+    return new Response("OK", { headers: corsHeaders });
   // This is where we retrieve the link data object
   const payload = await readBody(event);
 
