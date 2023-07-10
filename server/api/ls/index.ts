@@ -5,17 +5,19 @@ import { linkList } from "~~/variables/variables.server";
 
 const corsHeaders = {
   "Access-Control-Allow-Headers": "*",
-  "Access-Control-Allow-Methods": "POST",
+  "Access-Control-Allow-Methods": "POST,OPTIONS",
   "Access-Control-Allow-Origin": "*",
 };
 
 export default defineEventHandler(async (event) => {
-  console.log(
-    event.node.req.method,
-    new Response("Hmm", { headers: corsHeaders })
-  );
+  //   console.log(
+  //     event.node.req.method,
+  //     new Response("Hmm", { headers: corsHeaders })
+  //   );
+
   if (event.node.req.method === "OPTIONS")
     return new Response("OK", { headers: corsHeaders });
+
   // This is where we retrieve the link data object
   const payload = await readBody(event);
 
