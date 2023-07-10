@@ -10,6 +10,10 @@ const corsHeaders = {
 };
 
 export default defineEventHandler(async (event) => {
+  console.log(
+    event.node.req.method,
+    new Response("Hmm", { headers: corsHeaders })
+  );
   if (event.node.req.method === "OPTIONS")
     return new Response("OK", { headers: corsHeaders });
   // This is where we retrieve the link data object
