@@ -1,7 +1,7 @@
 import { updateStats } from "~~/helpers/helpers.server";
 import { LinkListType } from "~~/types/types.server";
 import { linkList } from "~~/variables/variables.server";
-import geoip from "geoip-lite";
+import ipLocation from "iplocation";
 
 const corsHeaders = {
   "Access-Control-Allow-Headers": "*",
@@ -21,9 +21,16 @@ export default defineEventHandler(async (event) => {
       ? Object.assign({}, event.node.req.headers)
       : {};
   const ip_address = headers["x-forwarded-for"]?.toString();
-  const geolocation_data = geoip.lookup(ip_address ?? "");
+  //   const geolocation_data = geoip.lookup(ip_address ?? "");
 
-  console.log(geolocation_data);
+  //   console.log(geolocation_data);
+
+  //   var ipLocation = require("ip-location");
+
+  (async () => {
+    const ipRes = await ipLocation("172.217.167.78");
+    console.log(ipRes);
+  })();
 
   // Confirm it's a "sight" type
   if ((payload.type as string) === "sight") {
