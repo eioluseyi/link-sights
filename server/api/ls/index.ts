@@ -28,8 +28,12 @@ export default defineEventHandler(async (event) => {
   //   var ipLocation = require("ip-location");
 
   (async () => {
-    const ipRes = await ipLocation("172.217.167.78");
-    console.log(ipRes);
+    try {
+      const ipRes = await ipLocation("172.217.167.78");
+      console.log(ipRes);
+    } catch (err) {
+      console.log(err);
+    }
   })();
 
   // Confirm it's a "sight" type
