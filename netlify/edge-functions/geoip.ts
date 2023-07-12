@@ -1,6 +1,6 @@
-import { updateStats } from "../../helpers/helpers.server";
-import { LinkListType } from "../../types/types.server";
-import { linkList } from "../../variables/variables.server";
+// import { updateStats } from "../../helpers/helpers.server";
+// import { LinkListType } from "../../types/types.server";
+// import { linkList } from "../../variables/variables.server";
 
 const corsHeaders = {
   "Access-Control-Allow-Headers": "*",
@@ -12,7 +12,7 @@ export const config = { path: "/api/ls" };
 
 export default async (request: any, context: { ip: any; geo: any }) => {
   // This is where we retrieve the link data object
-  const payload = await request.json();
+  // const payload = await request.json();
 
   const ip = context.ip;
 
@@ -23,22 +23,24 @@ export default async (request: any, context: { ip: any; geo: any }) => {
   console.log(geolocation_data);
 
   // Confirm it's a "sight" type
-  if ((payload.type as string) === "sight") {
-    const linkDataObject = payload.data;
-    const processedData: LinkListType = {
-      href: linkDataObject.href,
-      attempts: [
-        {
-          ip_address: ip,
-          device_type: "device_type",
-          ...geolocation_data,
-        },
-      ],
-    };
+  // if ((payload.type as string) === "sight") {
+  //   const linkDataObject = payload.data;
+  //   const processedData: LinkListType = {
+  //     href: linkDataObject.href,
+  //     attempts: [
+  //       {
+  //         ip_address: ip,
+  //         device_type: "device_type",
+  //         ...geolocation_data,
+  //       },
+  //     ],
+  //   };
 
-    // Update insights
-    await updateStats(processedData);
-  }
+  // Update insights
+  // await updateStats(processedData);
+  // }
+
+  const linkList = [{ power: "might" }];
 
   return { linkList };
   // return Response. .json(
