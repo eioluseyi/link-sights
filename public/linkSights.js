@@ -78,7 +78,7 @@ const activateLinks = () => {
         payload: { type: "sight", data: parseData({ href: el.href }) },
       });
 
-      elClone.click();
+      // elClone.click();
     };
   });
 };
