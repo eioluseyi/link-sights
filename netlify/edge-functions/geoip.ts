@@ -1,7 +1,6 @@
 import { updateStats } from "~~/helpers/helpers.server";
 import { LinkListType } from "~~/types/types.server";
 import { linkList } from "~~/variables/variables.server";
-import geoip from "geoip-lite";
 
 const corsHeaders = {
   "Access-Control-Allow-Headers": "*",
