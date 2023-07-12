@@ -5,11 +5,12 @@ export default async (request: any, context: { geo: any; ip: any }) => {
     geo: context.geo,
     ip: context.ip,
   });
+
   return new Response(
-    {
+    JSON.stringify({
       ...context.geo,
       ip: context.ip,
-    },
+    }),
     // Add a second parameter to `Response.json`
     // where we can provide our CORS headers
     {
