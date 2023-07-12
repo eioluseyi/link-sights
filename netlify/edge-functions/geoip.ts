@@ -9,19 +9,17 @@ const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
 };
 
-export default defineEventHandler(async (event) => {
-  if (event.node.req.method === "OPTIONS")
-    return new Response("OK", { headers: corsHeaders });
+export const config = { path: "/api/ls" };
 
+export default async (request: any, context: { ip: any; geo: any }) => {
   // This is where we retrieve the link data object
-  const payload = await readBody(event);
+  const payload = await request.json();
 
-  const headers =
-    event.node.req && event.node.req.headers
-      ? Object.assign({}, event.node.req.headers)
-      : {};
-  const ip_address = "172.217.167.78" ?? headers["x-forwarded-for"]?.toString();
-  const geolocation_data = geoip.lookup(ip_address ?? "");
+  const ip = context.ip;
+
+  console.log(ip);
+
+  const geolocation_data = context.geo;
 
   console.log(geolocation_data);
 
@@ -32,9 +30,9 @@ export default defineEventHandler(async (event) => {
       href: linkDataObject.href,
       attempts: [
         {
-          ip_address: ip_address,
+          ip_address: ip,
           device_type: "device_type",
-          //   ...geolocation_data,
+          ...geolocation_data,
         },
       ],
     };
@@ -44,4 +42,15 @@ export default defineEventHandler(async (event) => {
   }
 
   return { linkList };
-});
+  // return Response. .json(
+  //   {
+  //     ...context.geo,
+  //     ip: context.ip,
+  //   },
+  //   // Add a second parameter to `Response.json`
+  //   // where we can provide our CORS headers
+  //   {
+  //     headers: corsHeaders,
+  //   }
+  // );
+};

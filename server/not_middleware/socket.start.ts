@@ -91,7 +91,6 @@ export default defineEventHandler(() => {
  * - ⬜️ Add IP address tracking
  * - ⬜️ Add location tracking
  * - ⬜️ Add device type tracking
- * - ⬜️ Add time (+timezone) tracking
  * - ⬜️ Add click through rate tracking
  * - ⬜️ Add other info tracking
  */
