@@ -27,6 +27,8 @@ export default defineEventHandler(async (event) => {
 
   const user_agent = headers["user-agent"];
 
+  console.log({ ip_address, user_agent });
+
   // Confirm it's a "sight" type
   if ((payload.type as string) === "sight") {
     const { href } = payload.data;
