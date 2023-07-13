@@ -22,12 +22,9 @@ export default defineEventHandler(async (event) => {
 
   const ip_address =
     event.node.req.socket.remoteAddress ??
-    headers["x-forwarded-for"]?.toString() ??
-    headers["x-real-ip"]?.toString();
+    headers["x-forwarded-for"]?.toString();
 
   const user_agent = headers["user-agent"];
-
-  console.log({ ip_address, user_agent, headers });
 
   // Confirm it's a "sight" type
   if ((payload.type as string) === "sight") {
