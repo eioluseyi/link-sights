@@ -1,12 +1,18 @@
 <script lang="ts" setup>
 import {
-  useQueryClient,
+  // useQueryClient,
   useQuery,
   UseQueryReturnType,
 } from "@tanstack/vue-query";
 
 // Access QueryClient instance
-const queryClient = useQueryClient();
+// const queryClient = useQueryClient();
+
+const queryApi = ref("");
+
+if (process.client) {
+  queryApi.value = (window.location?.origin ?? "") + "/api/user/links";
+}
 
 // Query
 const {
@@ -17,11 +23,15 @@ const {
 }: UseQueryReturnType<any, any> = useQuery({
   queryKey: ["get-link-list"],
   queryFn: async () => {
-    const response = await fetch("/api/user/links");
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
+    if (process.client) {
+      const response = await fetch(queryApi.value);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
     }
-    return response.json();
+
+    return [];
   },
 });
 
@@ -30,10 +40,12 @@ onMounted(() => {});
 
 <template>
   <h1><a href="https://google.com">Run!</a></h1>
-  <span v-if="isLoading">Loading...</span>
-  <span v-else-if="isError">Error: {{ error.message }}</span>
-  <!-- We can assume by this point that `isSuccess === true` -->
-  <pre v-else-if="linkList" class="bt">{{ linkList }}</pre>
+  <ClientOnly>
+    <span v-if="isLoading">Loading...</span>
+    <span v-else-if="isError">Error: {{ error.message }}</span>
+    <!-- We can assume by this point that `isSuccess === true` -->
+    <pre v-else-if="linkList" class="bt">{{ linkList }}</pre>
+  </ClientOnly>
 </template>
 
 <style scoped>

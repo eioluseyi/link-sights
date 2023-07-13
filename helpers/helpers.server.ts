@@ -2,7 +2,7 @@ import { LinkListType } from "@/types/types.server";
 import { linkList } from "@/variables/variables.server";
 import { isUrlEqual } from "@/utils";
 
-export const findExistingLinkByIndex = (link: string) => {
+export const findExistingLinkByIndex = (link: URL) => {
   const linkFoundIndex = linkList.findIndex((listItem) =>
     isUrlEqual(link, listItem.href)
   );
@@ -17,7 +17,7 @@ export const updateStats = async (statsData: LinkListType) => {
    * - If link doesn't exist, add new link with new attempt
    */
 
-  // console.log("⏳ Updating insights..");
+  console.log("⏳ Updating insights..");
 
   const linkIndex = findExistingLinkByIndex(statsData.href);
 

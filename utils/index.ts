@@ -21,6 +21,13 @@ export const removeTrailingSlash = (str: string) => {
 };
 
 export const isUrlEqual = (first: string | URL, second: string | URL) => {
+  try {
+    new URL(first);
+    new URL(second);
+  } catch (err) {
+    return false;
+  }
+
   const firstUrlObj = new URL(first);
   const secondUrlObj = new URL(second);
 

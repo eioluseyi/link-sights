@@ -39,7 +39,6 @@ export default defineEventHandler(() => {
               attempts: [
                 {
                   ip_address: "ip_address",
-                  device_type: "device_type",
                 },
               ],
             };
@@ -76,7 +75,7 @@ export default defineEventHandler(() => {
  * - ✅ Backend: process data, counting clicks per link
  * - ✅ Backend: save data in variable (DB)
  * - ✅ Backend: broadcast updates over socket and make data available through GET request
- * - ⬜️ Write tests
+ * - 🟧 Write tests
  */
 
 /** INTERMEDIATE ------------------------>
