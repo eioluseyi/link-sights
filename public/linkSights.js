@@ -6,23 +6,9 @@ const isReady = {
 const parseData = ({ href }) => {
   const responseObject = {
     href,
-    api_key: "API_KEY_EXPOSED",
   };
   return responseObject;
 };
-
-// const observer = new IntersectionObserver(
-//   function (entries) {
-//     console.log(entries);
-//     if (entries[0].isIntersecting === true)
-//       console.log("Element is fully visible in screen");
-//     if (entries[0].isIntersecting === false)
-//       console.log("Element has gone from screen");
-//   },
-//   { threshold: [1] }
-// );
-
-// observer.observe(document.querySelector("img.attachment-full"));
 
 const sendRequest = ({ payload }) => {
   return fetch("https://linksights.netlify.app/api/ls", {
