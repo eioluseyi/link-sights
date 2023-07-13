@@ -4,9 +4,9 @@ import { linkList } from "~~/variables/variables.server";
 import geoip from "geoip-lite";
 
 const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "*",
   "Access-Control-Allow-Methods": "POST,OPTIONS",
-  "Access-Control-Allow-Origin": "*",
 };
 
 export default defineEventHandler(async (event) => {
@@ -20,13 +20,14 @@ export default defineEventHandler(async (event) => {
     event.node.req && event.node.req.headers
       ? Object.assign({}, event.node.req.headers)
       : {};
-  const ip_address = "172.217.167.78" ?? headers["x-forwarded-for"]?.toString();
+  const ip_address =
+    event.node.req.socket.remoteAddress ??
+    headers["x-forwarded-for"]?.toString() ??
+    headers["x-real-ip"]?.toString();
 
-  const ip = event.node.req.socket.remoteAddress;
+  console.log(ip_address, "ip_address");
 
-  console.log(ip);
-
-  const geolocation_data = geoip.lookup(ip_address ?? "");
+  const geolocation_data = geoip.lookup(ip_address ?? "") ?? {};
 
   console.log(geolocation_data);
 
@@ -37,9 +38,9 @@ export default defineEventHandler(async (event) => {
       href: linkDataObject.href,
       attempts: [
         {
-          ip_address: ip_address,
+          ip_address,
           device_type: "device_type",
-          //   ...geolocation_data,
+          geolocation_data,
         },
       ],
     };
