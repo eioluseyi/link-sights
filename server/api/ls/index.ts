@@ -41,5 +41,8 @@ export default defineEventHandler(async (event) => {
     await updateStats(processedData);
   }
 
-  return { linkList };
+  return new Response(JSON.stringify({ message: "Success" }), {
+    status: 200,
+    statusText: "OK",
+  });
 });

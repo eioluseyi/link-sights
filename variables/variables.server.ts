@@ -9,17 +9,4 @@ export const sockets: any[] = [];
 
 export const userList = [];
 
-export const linkList: LinkListType[] = [
-  /**
-   * {
-   *    href,
-   *    attempts: [
-   *        {
-   *            ip_address,
-   *            device_type,
-   *            ...others,
-   *        }
-   *    ]
-   * }
-   */
-];
+export const linkList: LinkListType[] = [];
