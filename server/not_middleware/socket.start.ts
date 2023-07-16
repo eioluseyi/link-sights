@@ -80,6 +80,7 @@ export default defineEventHandler(() => {
 
 /** INTERMEDIATE ------------------------>
  *
+ * - ✅ Landing page: Explain the app and funnel users to the Admin demo page
  * - ✅ Admin: view link updates over socket or GET request
  * - ⬜️ Admin: plot graph and run analytics on front end
  * - ⬜️ Backend: store data in database
